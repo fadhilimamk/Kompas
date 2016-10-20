@@ -12,5 +12,19 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
+
+Route::get('/login', function () {
+    $user = new App\User();
+    $user->username = "fadhilimamk";
+    $user->password = "rahasia";
+
+    Auth::login($user);
+
+    return redirect()->intended('/');
+});
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');

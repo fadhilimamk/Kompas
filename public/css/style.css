@@ -1,0 +1,13 @@
+
+body {
+    /*background-image: url("../img/background_pattern.jpg");*/
+    background-size: 10cm;
+    background-color:rgba(0, 0, 0, 1)
+}
+
+#main {
+    margin: 4cm;
+    margin-top: 2cm;
+    padding: 2cm;
+    background-color: #ffffff;
+}
