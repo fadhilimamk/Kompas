@@ -17,47 +17,40 @@
   <br>
   <div class="row center">
     <div class="col-md-12 center">
-      <table class="table table-hover">
-        <thead>
+      @if($documents_count>0)
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Judul</th>
+              <th>Aksi</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+        @foreach($documents as $document)
           <tr>
-            <th>#</th>
-            <th>Judul</th>
-            <th>Aksi</th>
+            @if($document->filetype == 'pdf')
+              <th scope=row><img src="img/document_logo/pdf.svg"/></th>
+            @else
+              <th scope=row><img src="img/document_logo/doc.svg"/></th>
+            @endif
+            <td>{{ $document->title }}<br> <small>{{ $document->author }}</small></td>
+            <td><a href="{{ url('/detail/'.$document->author_id.'/'.$document->id) }}"><button class="btn btn-warning btn-sm">Detail</button></a>&nbsp;<button class="btn btn-info btn-sm">Unduh</button></td>
+            <td>{{ $document->hit }}
+                @if($document->hit > 1)
+                  Hits
+                @else
+                  Hit
+                @endif
+            </td>
           </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope=row><img src="img/document_logo/pdf.svg"/></th>
-            <td>Peraturan MWA No.012/2014 Tentang Sistem Perencanaan ITB PTNBH <br> <small>Direktorat Sistem dan Teknologi Informasi</small></td>
-            <td><button class="btn btn-warning btn-sm">Detail</button>&nbsp;<button class="btn btn-info btn-sm">Unduh</button></td>
-          </tr>
-          <tr>
-            <th scope=row><img src="img/document_logo/pdf.svg"/></th>
-            <td>Peraturan MWA No.010/2014 Tentang Kode Etik Mahasiswa ITB <br> <small>Direktorat Sistem dan Teknologi Informasi</small></td>
-            <td><button class="btn btn-warning btn-sm">Detail</button>&nbsp;<button class="btn btn-info btn-sm">Unduh</button></td>
-          </tr>
-          <tr>
-            <th scope=row><img src="img/document_logo/doc.svg"/></th>
-            <td>Laporan Rektor ITB Tahun 2015 <br> <small>Direktorat Sistem dan Teknologi Informasi</small></td>
-            <td><button class="btn btn-warning btn-sm">Detail</button>&nbsp;<button class="btn btn-info btn-sm">Unduh</button></td>
-          </tr>
-          <tr>
-            <th scope=row><img src="img/document_logo/doc.svg"/></th>
-            <td>Laporan Kinerja dan Keuangan ITB 2015 <br> <small>Direktorat Sistem dan Teknologi Informasi</small></td>
-            <td><button class="btn btn-warning btn-sm">Detail</button>&nbsp;<button class="btn btn-info btn-sm">Unduh</button></td>
-          </tr>
-          <tr>
-            <th scope=row><img src="img/document_logo/doc.svg"/></th>
-            <td>Rencana Strategis ITB 2016-2020 <br> <small>Direktorat Sistem dan Teknologi Informasi</small></td>
-            <td><button class="btn btn-warning btn-sm">Detail</button>&nbsp;<button class="btn btn-info btn-sm">Unduh</button></td>
-          </tr>
-          <tr>
-            <th scope=row><img src="img/document_logo/doc.svg"/></th>
-            <td>BAN PT No.328/SK/BAN-PT/Akred/S/V/2015 ttg Peringkat Akreditasi Prodi  <br> <small>Direktorat Sistem dan Teknologi Informasi</small></td></td>
-            <td><button class="btn btn-warning btn-sm">Detail</button>&nbsp;<button class="btn btn-info btn-sm">Unduh</button></td>
-          </tr>
-        </tbody>
-      </table>
+        @endforeach
+          </tbody>
+        </table>
+      @else
+        <p>Maaf, belum ada data dokumen dalam server.<p>
+      @endif
     </div>
   </div>
 </section>

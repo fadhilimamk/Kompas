@@ -8,10 +8,13 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Kompas Archive') }}</title>
 
     <!-- Styles -->
-    <link href="css/app.css" rel="stylesheet">
+    <link href="{{asset('css/app.css')}}" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="{{asset('css/font-awesome.min.css')}}" rel="stylesheet">
+    @yield('head')
 
     <!-- Scripts -->
     <script>
@@ -35,7 +38,7 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    {{ config('app.name', 'Kompas Archive') }}
                 </a>
             </div>
 
@@ -49,8 +52,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
                     @if (Auth::guest())
-                        <li><a href="{{ url('/login') }}">Login</a></li>
-                        <li><a href="{{ url('/register') }}">Register</a></li>
+                        <li><a href="{{ url('/') }}">Halaman Depan</a></li>
                     @else
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -59,6 +61,9 @@
 
                             <ul class="dropdown-menu" role="menu">
                                 <li>
+                                  <a href="{{ url('/') }}">
+                                      Halaman Depan
+                                  </a>
                                     <a href="{{ url('/logout') }}"
                                         onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
@@ -80,6 +85,8 @@
     @yield('content')
 
     <!-- Scripts -->
-    <script src="js/app.js"></script>
+    <script src="{{asset('js/app.js')}}"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    @yield('foot')
 </body>
 </html>
